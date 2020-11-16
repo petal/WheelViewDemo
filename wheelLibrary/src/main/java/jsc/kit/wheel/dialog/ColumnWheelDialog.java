@@ -21,6 +21,7 @@ import java.util.List;
 import jsc.kit.wheel.R;
 import jsc.kit.wheel.base.IWheel;
 import jsc.kit.wheel.base.WheelItemView;
+import jsc.kit.wheel.base.WheelView;
 
 /**
  * date time picker dialog
@@ -31,6 +32,14 @@ import jsc.kit.wheel.base.WheelItemView;
  * @author jiangshicheng
  */
 public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends IWheel, T3 extends IWheel, T4 extends IWheel> extends Dialog {
+
+    public interface OnSelectedChangedListener {
+        void onItem0Selected(int selectedIndex);
+        void onItem1Selected(int selectedIndex);
+        void onItem2Selected(int selectedIndex);
+        void onItem3Selected(int selectedIndex);
+        void onItem4Selected(int selectedIndex);
+    }
 
     private TextView tvTitle;
     private TextView tvCancel;
@@ -56,6 +65,8 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
     private float textSize;
     private int itemVerticalSpace;
 
+    private OnSelectedChangedListener onSelectedChangedListener;
+
     public ColumnWheelDialog(@NonNull Context context) {
         this(context, R.style.WheelDialog);
     }
@@ -80,16 +91,62 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
     private void initView() {
         isViewInitialized = true;
         LinearLayout lyPickerContainer = findViewById(R.id.wheel_id_picker_container);
+
         wheelItemView0 = new WheelItemView(lyPickerContainer.getContext());
+        wheelItemView0.setOnSelectedListener(new WheelView.OnSelectedListener() {
+            @Override
+            public void onSelected(Context context, int selectedIndex) {
+                if (onSelectedChangedListener != null) {
+                    onSelectedChangedListener.onItem0Selected(selectedIndex);
+                }
+            }
+        });
         lyPickerContainer.addView(wheelItemView0, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+
         wheelItemView1 = new WheelItemView(lyPickerContainer.getContext());
+        wheelItemView1.setOnSelectedListener(new WheelView.OnSelectedListener() {
+            @Override
+            public void onSelected(Context context, int selectedIndex) {
+                if (onSelectedChangedListener != null) {
+                    onSelectedChangedListener.onItem1Selected(selectedIndex);
+                }
+            }
+        });
         lyPickerContainer.addView(wheelItemView1, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+
         wheelItemView2 = new WheelItemView(lyPickerContainer.getContext());
+        wheelItemView2.setOnSelectedListener(new WheelView.OnSelectedListener() {
+            @Override
+            public void onSelected(Context context, int selectedIndex) {
+                if (onSelectedChangedListener != null) {
+                    onSelectedChangedListener.onItem2Selected(selectedIndex);
+                }
+            }
+        });
         lyPickerContainer.addView(wheelItemView2, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+
         wheelItemView3 = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(wheelItemView3, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        wheelItemView3.setOnSelectedListener(new WheelView.OnSelectedListener() {
+            @Override
+            public void onSelected(Context context, int selectedIndex) {
+                if (onSelectedChangedListener != null) {
+                    onSelectedChangedListener.onItem3Selected(selectedIndex);
+                }
+            }
+        });
+
         wheelItemView4 = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(wheelItemView4, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        wheelItemView4.setOnSelectedListener(new WheelView.OnSelectedListener() {
+            @Override
+            public void onSelected(Context context, int selectedIndex) {
+                if (onSelectedChangedListener != null) {
+                    onSelectedChangedListener.onItem4Selected(selectedIndex);
+                }
+            }
+        });
+
         if (textSize > 0) {
             wheelItemView0.setTextSize(textSize);
             wheelItemView1.setTextSize(textSize);
@@ -217,12 +274,72 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
         updateOffsetX(totalOffsetX);
     }
 
+    public T0[] getItems0() {
+        return items0;
+    }
+
+    public T1[] getItems1() {
+        return items1;
+    }
+
+    public T2[] getItems2() {
+        return items2;
+    }
+
+    public T3[] getItems3() {
+        return items3;
+    }
+
+    public T4[] getItems4() {
+        return items4;
+    }
+
     public void setSelected(int selected0, int selected1, int selected2, int selected3, int selected4) {
         executeSelected(wheelItemView0, selected0);
         executeSelected(wheelItemView1, selected1);
         executeSelected(wheelItemView2, selected2);
         executeSelected(wheelItemView3, selected3);
         executeSelected(wheelItemView4, selected4);
+    }
+
+    public void setItem0Selected(int selected0) {
+        executeSelected(wheelItemView0, selected0);
+    }
+
+    public void setItem1Selected(int selected1) {
+        executeSelected(wheelItemView1, selected1);
+    }
+
+    public void setItem2Selected(int selected2) {
+        executeSelected(wheelItemView2, selected2);
+    }
+
+    public void setItem3Selected(int selected3) {
+        executeSelected(wheelItemView3, selected3);
+    }
+
+    public void setItem4Selected(int selected4) {
+        executeSelected(wheelItemView4, selected4);
+    }
+
+    public int getItem0Selected() {
+        return wheelItemView0.getSelectedIndex();
+    }
+
+    public int getItem1Selected() {
+        return wheelItemView1.getSelectedIndex();
+    }
+
+    public int getItem2Selected() {
+        return wheelItemView2.getSelectedIndex();
+    }
+
+    public int getItem3Selected() {
+        return wheelItemView3.getSelectedIndex();
+    }
+
+    public int getItem4Selected() {
+        return wheelItemView4.getSelectedIndex();
     }
 
     private boolean isScrolling() {
@@ -277,5 +394,9 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
 
     public interface OnClickCallBack<D0, D1, D2, D3, D4> {
         boolean callBack(View v, @Nullable D0 item0, @Nullable D1 item1, @Nullable D2 item2, @Nullable D3 item3, @Nullable D4 item4);
+    }
+
+    public void setOnSelectedChangedListener(OnSelectedChangedListener onSelectedChangedListener) {
+        this.onSelectedChangedListener = onSelectedChangedListener;
     }
 }
