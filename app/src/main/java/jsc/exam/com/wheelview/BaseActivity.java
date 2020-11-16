@@ -1,10 +1,10 @@
 package jsc.exam.com.wheelview;
 
 import android.graphics.Color;
-import android.support.annotation.StringRes;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.ActionMenuView;
-import android.util.Log;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.ActionMenuView;
+
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;

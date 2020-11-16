@@ -2,11 +2,11 @@ package jsc.exam.com.wheelview.adapter;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Black space line {@link android.support.v7.widget.RecyclerView.ItemDecoration} for {@link RecyclerView}.
+ * Black space line {@link RecyclerView.ItemDecoration} for {@link RecyclerView}.
  * <p>
  * <br>Email:1006368252@qq.com
  * <br>QQ:1006368252

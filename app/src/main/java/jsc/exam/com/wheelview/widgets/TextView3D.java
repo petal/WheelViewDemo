@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
@@ -18,7 +18,7 @@ import jsc.exam.com.wheelview.R;
  *
  * @author jiangshicheng
  */
-public class TextView3D extends android.support.v7.widget.AppCompatTextView {
+public class TextView3D extends androidx.appcompat.widget.AppCompatTextView {
     Matrix matrix = new Matrix();
     Camera camera = new Camera();
     float angle;
