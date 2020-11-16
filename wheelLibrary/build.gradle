@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion sdk_veriosn
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion min_sdk_veriosn
-        targetSdkVersion sdk_veriosn
-        versionCode version_code
-        versionName version_name
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 13
+        versionName '0.5.4'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -21,16 +20,6 @@ android {
         }
     }
 
-}
-
-publish {
-    userOrg = "$user_org"
-    repoName = 'maven'
-    groupId = 'jsc.kit.wheel'
-    artifactId = 'wheel-view'
-    publishVersion = "$version_name"
-    desc = 'a wheel view library'
-    website = 'https://github.com/JustinRoom/WheelViewDemo'
 }
 
 dependencies {
