@@ -11,6 +11,7 @@
         android:id="@id/wheel_id_picker_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#111"
         android:orientation="horizontal"
         android:paddingStart="@dimen/wheel_picker_padding_left"
         android:paddingTop="@dimen/wheel_picker_padding_top"

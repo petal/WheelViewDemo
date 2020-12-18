@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -45,6 +47,7 @@ public class WheelItemView extends FrameLayout implements IWheelViewSetting {
         wheelMaskView.initAttr(context, attrs, defStyleAttr);
         addView(wheelView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         addView(wheelMaskView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setTextColor(Color.parseColor("#bbbbbb"));
     }
 
     @Override

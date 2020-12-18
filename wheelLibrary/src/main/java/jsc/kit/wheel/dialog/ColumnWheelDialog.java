@@ -223,6 +223,18 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
         tvTitle.setText(title);
     }
 
+    public void setTitleBackgroundColor(int color) {
+        ensureIsViewInitialized();
+        tvTitle.setBackgroundColor(color);
+    }
+
+    public void setTitleColor(int titleColor, int okTextColor, int cancelColor) {
+        ensureIsViewInitialized();
+        tvTitle.setTextColor(titleColor);
+        tvOK.setTextColor(okTextColor);
+        tvCancel.setTextColor(cancelColor);
+    }
+
     public void setTextSize(float textSize) {
         this.textSize = textSize;
     }
