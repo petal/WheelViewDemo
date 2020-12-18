@@ -23,7 +23,7 @@ public class WheelMaskView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int top = 0;
     private int bottom = 0;
-    private int lineColor = 0x8F0000FF;
+    private int lineColor = 0x1ABBBBBB;
 
     public WheelMaskView(Context context) {
         super(context);
@@ -42,10 +42,10 @@ public class WheelMaskView extends View {
 
     public void initAttr(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WheelMaskView, defStyleAttr, 0);
-        lineColor = a.getColor(R.styleable.WheelMaskView_wheelMaskLineColor, 0x8F0000FF);
+        lineColor = a.getColor(R.styleable.WheelMaskView_wheelMaskLineColor, lineColor);
         a.recycle();
 
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(1);
     }
 
@@ -70,8 +70,9 @@ public class WheelMaskView extends View {
     protected void onDraw(Canvas canvas) {
         if (top > 0 && bottom > 0) {
             paint.setColor(lineColor);
-            canvas.drawLine(0, top, getWidth(), top, paint);
-            canvas.drawLine(0, bottom, getWidth(), bottom, paint);
+//            canvas.drawLine(0, top, getWidth(), top, paint);
+//            canvas.drawLine(0, bottom, getWidth(), bottom, paint);
+            canvas.drawRect(0, top, getWidth(), bottom, paint);
         }
     }
 }
